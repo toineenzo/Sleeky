@@ -198,7 +198,16 @@ select:hover {
   padding: 0;
   width: 50em;
   max-width: 90vw;
-  height: auto;
+  // height: auto picked up the viewport (100vh) under Sleeky because the
+  // body sets display: inline; fit-content tells the browser to size to
+  // the actual children instead.
+  height: fit-content;
+  max-height: 90vh;
+  // Native <dialog> is showModal()-positioned via inset:0 + margin:auto.
+  // We keep that explicit so any vendor-prefixed default doesn't drift.
+  inset: 0;
+  margin: auto;
+  overflow: hidden;
   box-shadow: 0 8px 32px rgba(0,0,0,0.4);
 
   @if ($theme == "light") {
